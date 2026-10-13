@@ -5,7 +5,7 @@
 Функции https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Functions
 ---------------------------------------------------------------------------
 Информация для подготовки к зачету
-https://github.com/Kondusov/rpo-24-1-js/exam
+https://github.com/Kondusov/rpo-24-1-js/tree/main/exam
 ---------------------------------------------------------------------------
 Репозиторий с прогрессом нашей работы
 https://github.com/Kondusov/rpo-24-1-js
