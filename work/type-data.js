@@ -2,7 +2,7 @@ let a = 1;
 let b = "my-string";
 let c;
 let d = 8;
-//sb+d = 'my-string8'
+//b+d = 'my-string8'
 console.log(a);
 console.log(typeof(a));
 c = true;
