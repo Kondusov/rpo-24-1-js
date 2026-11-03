@@ -5,7 +5,7 @@ function combaineTask(event){
     task.deadline = document.getElementById('deadline').value;
     task.created = new Date();
     task.status = 0;
-    localStorage.setItem(localStorage.length++, JSON.stringify(task));
+    localStorage.setItem(crypto.randomUUID(), JSON.stringify(task));
 }
 document.querySelector('form').addEventListener('submit', combaineTask);
 let table_tasks = document.getElementById('list_tasks');
@@ -13,21 +13,22 @@ let table_tasks = document.getElementById('list_tasks');
 // localStorage.clear()
 for(let i=0; i<localStorage.length; i++){
     console.log(JSON.parse(localStorage.getItem(i)));
-        if(typeof(cureentTask)!== 'undefined'){
-            let cureentTask = JSON.parse(localStorage.getItem(i));
-            
+    let currentKey = localStorage.key(i).trim();
+    let cureentTask = JSON.parse(localStorage.getItem(currentKey));
+        if(cureentTask!= null){
+            console.log(cureentTask);
             let status_current = cureentTask.status;
-            let status_task_id = i;
+            let status_task_id = currentKey;
             let status = `<form class='form_status'>
             <input type='hidden' value=${status_task_id} name="task_id"></input>
             <input type='hidden' value=${status_current} name="status"></input>
             <input class=${status_current==0?'none_completed':'completed'}
             type='submit' value=${status_current==0?'выполнить':'выполнено'}></input>
             </form>`;
-            console.log(status);
+            //console.log(status);
             table_tasks.innerHTML += `<tr><td>${i+1}</td><td>${cureentTask.description}</td>
         <td>${cureentTask.created}</td><td>${cureentTask.deadline}</td><td>${status}</td>
-        <td><button onclick='deletTask(${i})'>удалить</button></td>
+        <td><button onclick="deletTask('${currentKey}')">удалить</button></td>
         </tr>`;
     }
 }
