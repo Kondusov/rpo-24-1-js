@@ -2,7 +2,7 @@ function combaineTask(event){
     //event.preventDefault();
     let task = new Object;
     task.description = document.getElementById('input_task').value;
-    task.deadline = document.getElementById('deadline').value;
+    task.deadline = new Date(document.getElementById('deadline').value).getTime();
     task.created = new Date();
     task.status = 0;
     localStorage.setItem(crypto.randomUUID(), JSON.stringify(task));
@@ -17,6 +17,13 @@ for(let i=0; i<localStorage.length; i++){
     let cureentTask = JSON.parse(localStorage.getItem(currentKey));
         if(cureentTask!= null){
             console.log(cureentTask);
+            let deadline = (cureentTask.deadline - Date.now())/1000/60/60; // получили кол-во часов до дедлайна
+            let deadlineStyle = '';
+            if(cureentTask.status != 1){
+                if(deadline < 24 && deadline > 0){deadlineStyle = 'less24'}
+                if(deadline<0){deadlineStyle ='less0';}
+            }else{deadlineStyle = 'completed'}
+            console.log(deadline);
             let status_current = cureentTask.status;
             let status_task_id = currentKey;
             let status = `<form class='form_status'>
@@ -27,7 +34,7 @@ for(let i=0; i<localStorage.length; i++){
             </form>`;
             //console.log(status);
             table_tasks.innerHTML += `<tr><td>${i+1}</td><td>${cureentTask.description}</td>
-        <td>${cureentTask.created}</td><td>${cureentTask.deadline}</td><td>${status}</td>
+        <td>${new Date(cureentTask.created).toLocaleString()}</td><td class='${deadlineStyle}' >${new Date(cureentTask.deadline).toLocaleString()}</td><td>${status}</td>
         <td><button onclick="deletTask('${currentKey}')">удалить</button></td>
         </tr>`;
     }
