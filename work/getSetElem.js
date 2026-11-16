@@ -1,5 +1,6 @@
 // Получение HTML-элементов
-document.querySelector('.selector') //Возвращает первый элемент, соответствующий CSS-селектору (например, '.my-class', '#my-id', 'div > p').
+document.querySelector('selector') //Возвращает первый элемент, соответствующий CSS-селектору (например, '.my-class', '#my-id', 'div > p').
+document.querySelector('.selector') //Возвращает  элемент, соответствующий CSS-классу).
 document.querySelectorAll('selector') //Возвращает коллекцию (NodeList) всех найденных элементов.
 document.getElementById('id') //Самый быстрый способ получить элемент по уникальному ID.
 document.getElementsByClassName('class') // Возвращает живую HTML-коллекцию элементов с указанным классом. 
